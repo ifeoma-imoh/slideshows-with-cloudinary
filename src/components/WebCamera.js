@@ -1,7 +1,7 @@
 import Webcam from "react-webcam";
 import { useRef } from "react";
 
-const WebCam = ({ onCapture, loading }) => {
+const WebCamera = ({ onCapture, loading }) => {
   const capture = async () => {
     // get screenshot
     const image = webCamRef.current.getScreenshot();
@@ -35,4 +35,4 @@ const WebCam = ({ onCapture, loading }) => {
   );
 };
 
-export default WebCam;
+export default WebCamera;

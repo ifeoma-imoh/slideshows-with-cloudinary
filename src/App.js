@@ -1,20 +1,17 @@
 import { useState } from "react";
-import Webcam from "./components/Webcam";
+import WebCamera from "./components/WebCamera";
 import ImagePreviewer from "./components/ImagePreviewer";
 import SlideShowPreviewer from "./components/SlideShowPreviewer";
 import { upload, genDeliveryURL } from "./helpers";
 import "./App.css";
-
 export default function App() {
   const [loading, setLoading] = useState(false);
   const [deliveryURL, setDeliveryURL] = useState("");
   const [images, setImages] = useState([]);
   const onCapture = (newImage) =>
     setImages((prevImages) => [...prevImages, newImage]);
-
   const deleteImage = (ind) =>
     setImages((prevImages) => images.filter((_, index) => index !== ind));
-
   const uploadMultipleImages = async (images) => {
     let arrOfImageIds = [];
     for (const image of images) {
@@ -22,7 +19,6 @@ export default function App() {
     }
     return arrOfImageIds;
   };
-
   const buildSlideShow = async () => {
     try {
       setLoading(true);
@@ -36,11 +32,10 @@ export default function App() {
       setLoading(false);
     }
   };
-
   return (
     <main>
       <section className="main con">
-        <Webcam onCapture={onCapture} loading={loading} />
+        <WebCamera onCapture={onCapture} loading={loading} />
         {deliveryURL && <SlideShowPreviewer url={deliveryURL} />}
       </section>
       {images.length >= 2 && (
@@ -50,7 +45,6 @@ export default function App() {
           </button>
         </div>
       )}
-
       <section className="captured_imags_con con">
         {images.map((imgURL, index) => (
           <ImagePreviewer
